@@ -145,29 +145,49 @@
             transform: translateY(0);
         }
 
-        /* ヒーローの動きの設定 */
-        .hero-icon {
+        /* ヒーローのアニメーション設定 */
+        .hero-animation {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            font-size: 45px;
+            bottom: -100px; /* 最初は画面の下に隠しておく */
+            left: 50%; /* 画面の中央からスタート */
+            transform: translateX(-50%);
+            width: 150px; /* キャラクターのサイズ */
             z-index: 9999;
-            animation: heroFlight linear both;
+            opacity: 0; /* 最初は透明 */
+            
+            /* スクロールと連動させるコード */
+            animation: heroFlyUp linear both;
             animation-timeline: scroll();
         }
 
-        @keyframes heroFlight {
+        /* 画像自体の調整 */
+        .hero-animation img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); /* 影をつけて立体的に */
+        }
+
+        /* スクロールに合わせた動き（下から上へ飛んでいく） */
+        @keyframes heroFlyUp {
             0% {
-                transform: translateY(0) rotate(0deg);
-                right: 30px;
+                bottom: -100px;
+                opacity: 0;
+                transform: translateX(-50%) scale(0.8);
             }
-            50% {
-                transform: translateY(-180px) rotate(15deg);
-                right: 45%;
+            10% {
+                bottom: 50px; /* スクロールし始めるとパッと現れる */
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            90% {
+                bottom: 80vh; /* 画面の上の方まで飛ぶ */
+                opacity: 1;
+                transform: translateX(-50%) scale(1) rotate(0deg);
             }
             100% {
-                transform: translateY(-450px) rotate(-15deg);
-                right: 75%;
+                bottom: 100vh; /* 画面外（上）に消える */
+                opacity: 0;
+                transform: translateX(-50%) scale(1.1) rotate(10deg); /* 最後に少し傾く */
             }
         }
 
@@ -198,12 +218,17 @@
             nav {
                 display: none;
             }
+            .hero-animation {
+                width: 100px; /* スマホでは少し小さく調整 */
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-icon">🦸‍♂️</div>
+    <div class="hero-animation">
+        <img src="https://i.imgur.com/G5i5t8U.png" alt="ヒーローキャラクター">
+    </div>
 
     <header>
         <h1>就労支援B型事業所 HERO</h1>
@@ -259,7 +284,6 @@
     </footer>
 
     <script>
-        // スクロールに合わせてふわっと表示させるJavaScript
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
