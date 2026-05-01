@@ -17,6 +17,7 @@
             background-color: #FFFDF9; /* 温かみのある背景色 */
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden; /* 横スクロールを防ぐ */
         }
 
         /* ヘッダー */
@@ -84,7 +85,7 @@
 
         /* セクション共通 */
         section {
-            padding: 120px 20px 80px 20px; /* スクロールが分かりやすいよう上部を少し広めにしています */
+            padding: 120px 20px 80px 20px;
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
@@ -145,32 +146,30 @@
             transform: translateY(0);
         }
 
-        /* ヒーローのアニメーション設定 */
+        /* ヒーローのアニメーション設定（ここにキャラクターが飛ぶ動きが入ります） */
         .hero-animation {
             position: fixed;
-            bottom: -100px; /* 最初は画面の下に隠しておく */
-            left: 50%; /* 画面の中央からスタート */
+            bottom: -150px; /* 最初は画面の下に隠す */
+            left: 50%;
             transform: translateX(-50%);
-            width: 150px; /* キャラクターのサイズ */
+            width: 200px; /* サイズ調整 */
             z-index: 9999;
-            opacity: 0; /* 最初は透明 */
+            opacity: 0;
             
-            /* スクロールと連動させるコード */
+            /* スクロールと連動する設定 */
             animation: heroFlyUp linear both;
             animation-timeline: scroll();
         }
 
-        /* 画像自体の調整 */
         .hero-animation img {
             width: 100%;
             height: auto;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); /* 影をつけて立体的に */
         }
 
-        /* スクロールに合わせた動き（下から上へ飛んでいく） */
         @keyframes heroFlyUp {
             0% {
-                bottom: -100px;
+                bottom: -150px;
                 opacity: 0;
                 transform: translateX(-50%) scale(0.8);
             }
@@ -187,7 +186,7 @@
             100% {
                 bottom: 100vh; /* 画面外（上）に消える */
                 opacity: 0;
-                transform: translateX(-50%) scale(1.1) rotate(10deg); /* 最後に少し傾く */
+                transform: translateX(-50%) scale(1.1) rotate(10deg);
             }
         }
 
@@ -200,7 +199,7 @@
             font-size: 14px;
         }
 
-        /* レスポンシブ対応 */
+        /* レスポンシブ対応（スマートフォン表示） */
         @media (max-width: 768px) {
             .card-container {
                 flex-direction: column;
@@ -219,7 +218,7 @@
                 display: none;
             }
             .hero-animation {
-                width: 100px; /* スマホでは少し小さく調整 */
+                width: 130px; /* スマホでは少し小さく調整 */
             }
         }
     </style>
@@ -284,6 +283,7 @@
     </footer>
 
     <script>
+        // スクロールに合わせてふわっと表示させるアニメーション処理
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
