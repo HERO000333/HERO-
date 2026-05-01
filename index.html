@@ -17,7 +17,7 @@
             background-color: #FFFDF9; /* 温かみのある背景色 */
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden; /* 横スクロールを防ぐ */
+            overflow-x: hidden;
         }
 
         /* ヘッダー */
@@ -50,7 +50,7 @@
             background: linear-gradient(135deg, #FF6F61 0%, #FFB347 100%);
             color: #FFF;
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
         }
 
         .hero h2 {
@@ -85,7 +85,7 @@
 
         /* セクション共通 */
         section {
-            padding: 120px 20px 80px 20px;
+            padding: 150px 20px 100px 20px;
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
@@ -146,25 +146,46 @@
             transform: translateY(0);
         }
 
-        /* ヒーローのアニメーション設定（ここにキャラクターが飛ぶ動きが入ります） */
+        /* アニメーション設定：ページ全体のスクロールと連動 */
         .hero-animation {
             position: fixed;
-            bottom: -150px; /* 最初は画面の下に隠す */
+            bottom: -150px;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px; /* サイズ調整 */
             z-index: 9999;
             opacity: 0;
             
-            /* スクロールと連動する設定 */
             animation: heroFlyUp linear both;
             animation-timeline: scroll();
         }
 
-        .hero-animation img {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); /* 影をつけて立体的に */
+        /* かっこよく輝くヒーローマークのスタイル */
+        .hero-badge {
+            background: linear-gradient(135deg, #FFD700 0%, #FF6F61 100%);
+            color: white;
+            font-size: 40px;
+            font-weight: 900;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(255,111,97,0.7);
+            border: 3px solid white;
+            
+            animation: floatGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                box-shadow: 0 0 20px rgba(255,111,97,0.7);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+                box-shadow: 0 0 40px rgba(255,215,0,0.9);
+            }
         }
 
         @keyframes heroFlyUp {
@@ -173,20 +194,20 @@
                 opacity: 0;
                 transform: translateX(-50%) scale(0.8);
             }
-            10% {
-                bottom: 50px; /* スクロールし始めるとパッと現れる */
+            12% {
+                bottom: 80px;
                 opacity: 1;
                 transform: translateX(-50%) scale(1);
             }
-            90% {
-                bottom: 80vh; /* 画面の上の方まで飛ぶ */
+            88% {
+                bottom: 75vh;
                 opacity: 1;
                 transform: translateX(-50%) scale(1) rotate(0deg);
             }
             100% {
-                bottom: 100vh; /* 画面外（上）に消える */
+                bottom: 100vh;
                 opacity: 0;
-                transform: translateX(-50%) scale(1.1) rotate(10deg);
+                transform: translateX(-50%) scale(1.2) rotate(15deg);
             }
         }
 
@@ -199,7 +220,7 @@
             font-size: 14px;
         }
 
-        /* レスポンシブ対応（スマートフォン表示） */
+        /* レスポンシブ対応 */
         @media (max-width: 768px) {
             .card-container {
                 flex-direction: column;
@@ -217,8 +238,10 @@
             nav {
                 display: none;
             }
-            .hero-animation {
-                width: 130px; /* スマホでは少し小さく調整 */
+            .hero-badge {
+                width: 75px;
+                height: 75px;
+                font-size: 32px;
             }
         }
     </style>
@@ -226,7 +249,7 @@
 <body>
 
     <div class="hero-animation">
-        <img src="https://i.imgur.com/G5i5t8U.png" alt="ヒーローキャラクター">
+        <div class="hero-badge">H</div>
     </div>
 
     <header>
@@ -283,7 +306,6 @@
     </footer>
 
     <script>
-        // スクロールに合わせてふわっと表示させるアニメーション処理
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
