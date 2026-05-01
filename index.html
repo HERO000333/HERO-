@@ -73,17 +73,18 @@
             border-radius: 50px;
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transform: scale(1.05) translateY(-5px);
+            background-color: #FFE5D9;
+            box-shadow: 0 10px 25px rgba(255,111,97,0.4);
         }
 
         /* セクション共通 */
         section {
-            padding: 80px 20px;
+            padding: 120px 20px 80px 20px; /* スクロールが分かりやすいよう上部を少し広めにしています */
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
@@ -144,6 +145,32 @@
             transform: translateY(0);
         }
 
+        /* ヒーローの動きの設定 */
+        .hero-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 45px;
+            z-index: 9999;
+            animation: heroFlight linear both;
+            animation-timeline: scroll();
+        }
+
+        @keyframes heroFlight {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                right: 30px;
+            }
+            50% {
+                transform: translateY(-180px) rotate(15deg);
+                right: 45%;
+            }
+            100% {
+                transform: translateY(-450px) rotate(-15deg);
+                right: 75%;
+            }
+        }
+
         /* フッター */
         footer {
             background-color: #333;
@@ -169,12 +196,14 @@
                 font-size: 18px;
             }
             nav {
-                display: none; /* 簡単化のため非表示 */
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+
+    <div class="hero-icon">🦸‍♂️</div>
 
     <header>
         <h1>就労支援B型事業所 HERO</h1>
