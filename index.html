@@ -33,16 +33,18 @@
         .area-tag { font-size: 0.9rem; color: #666; font-weight: bold; background: #fff4e6; padding: 4px 15px; border-radius: 20px; display: inline-block; margin-bottom: 5px; }
         .logo { font-size: 1.6rem; font-weight: bold; color: var(--primary-color); letter-spacing: 2px; }
 
-        /* --- 大阪城背景付きヒーロービジュアル --- */
+        /* --- 修正：大阪城背景付きヒーロービジュアル --- */
         #hero-visual { 
             padding: 140px 20px; 
+            /* 確実に表示されるよう複数の背景オプションを設定 */
             background: linear-gradient(rgba(255, 249, 239, 0.7), rgba(255, 234, 167, 0.7)), 
-                        url('https://images.unsplash.com/photo-1590214399925-50280457b04a?auto=format&fit=crop&q=80&w=1600'); 
+                        url('https://cdn.pixabay.com/photo/2019/12/28/05/34/osaka-castle-4723793_1280.jpg'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed; 
             text-align: center; 
             position: relative;
+            border-bottom: 5px solid var(--primary-color);
         }
         .top-sub { font-size: 1.4rem; color: #e67e22; font-weight: bold; display: block; margin-bottom: 10px; text-shadow: 1px 1px 2px #fff; }
         .hero-name { font-size: 4rem; color: var(--primary-color); display: block; text-shadow: 3px 3px 0px #fff; line-height: 1.2; }
@@ -79,6 +81,7 @@
 </head>
 <body>
 
+<!-- ヒーロー犬 -->
 <div id="dog1" class="hero-dog dog-orange"><i class="fas fa-dog"></i></div>
 <div id="dog2" class="hero-dog dog-red"><i class="fas fa-dog"></i></div>
 <div id="dog3" class="hero-dog dog-blue"><i class="fas fa-dog"></i></div>
@@ -120,7 +123,7 @@
         </div>
     </section>
 
-    <!-- 事業 -->
+    <!-- 事業内容 -->
     <section class="reveal" style="margin-top: 60px;">
         <h2 class="section-title">事業内容</h2>
         <div class="grid">
@@ -130,7 +133,7 @@
         </div>
     </section>
 
-    <!-- 施設 -->
+    <!-- 施設紹介 -->
     <section id="atmosphere" class="reveal">
         <h2 class="section-title">施設紹介</h2>
         <div style="font-size: 4rem; color: var(--accent-gold); margin-bottom: 20px;"><i class="fas fa-couch"></i></div>
@@ -138,7 +141,7 @@
         <p>HEROの自慢は、ゆったり座れる大きなソファ。作業の合間にリフレッシュしたり、落ち着いて自分の作業に没頭できる環境を整えています。</p>
     </section>
 
-    <!-- 流れ -->
+    <!-- 一日の流れ -->
     <section class="reveal" style="margin-top: 60px;">
         <h2 class="section-title">一日の流れ</h2>
         <table class="schedule-table">
@@ -153,7 +156,7 @@
         </table>
     </section>
 
-    <!-- アクセス -->
+    <!-- 地図 -->
     <section class="reveal" id="access">
         <h2 class="section-title">アクセス・地図</h2>
         <div style="text-align: center; margin-bottom: 20px;">
