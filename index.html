@@ -3,117 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>就労継続支援B型事業所 HERO | 大阪</title>
+    <title>就労継続支援B型 HERO作業所</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* デザインの核となる設定 */
         :root {
-            --gold: #d4af37;
-            --dark-bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text-gray: #ccc;
+            --primary-color: #f39c12; /* 元気なオレンジ */
+            --accent-gold: #d4af37;
+            --bg-light: #ffffff;
+            --text-main: #333;
         }
 
-        body { font-family: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Meiryo', sans-serif; margin: 0; padding: 0; background-color: var(--dark-bg); color: #fff; line-height: 1.8; }
+        body { font-family: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Meiryo', sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
         
-        /* ヘッダー */
-        header { background: rgba(0, 0, 0, 0.95); padding: 15px 0; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; text-align: center; }
-        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 4px; color: var(--gold); }
-
-        /* ヒーローエリア */
-        #hero-visual { 
-            height: 50vh; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80'); 
-            background-size: cover; 
-            background-position: center;
-            text-align: center;
+        /* 動く犬のヒーロー（スクロールで跳ねる） */
+        #flying-dog {
+            position: fixed; bottom: 20px; right: 20px; font-size: 3rem; color: var(--primary-color);
+            z-index: 9999; pointer-events: none; transition: transform 0.1s ease-out;
         }
-        #hero-visual h2 { font-size: 2.2rem; margin: 0; letter-spacing: 2px; }
-        #hero-visual p { font-size: 1.1rem; color: var(--gold); margin-top: 10px; }
 
-        /* 共通セクション */
-        .container { width: 90%; max-width: 1000px; margin: auto; padding: 60px 0; }
-        .section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; color: var(--gold); }
-        .section-title::after { content: ""; display: block; width: 50px; height: 2px; background: var(--gold); margin: 15px auto; }
+        header { background: #fff; padding: 20px 0; border-bottom: 3px solid var(--primary-color); text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
 
-        /* コンテンツボックス */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--card-bg); padding: 30px; border-radius: 15px; border-left: 4px solid var(--gold); }
-        .card h3 { color: var(--gold); margin-top: 0; }
+        /* メインビジュアル */
+        #hero-visual { 
+            padding: 100px 20px;
+            background: radial-gradient(circle, #fff9ef 0%, #ffeaa7 100%);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        #hero-visual h1 { font-size: 2.8rem; color: var(--text-main); margin: 0; position: relative; z-index: 2; }
+        .dog-decor { position: absolute; font-size: 5rem; color: rgba(243, 156, 18, 0.1); z-index: 1; }
 
-        /* 雰囲気セクション（ソファのイメージ） */
-        #atmosphere { background: #111; padding: 60px 0; border-radius: 20px; text-align: center; }
-        .relax-box { font-size: 1.1rem; max-width: 700px; margin: auto; padding: 0 20px; }
+        .container { width: 90%; max-width: 900px; margin: auto; padding: 60px 0; }
+        .section-title { font-size: 1.8rem; margin-bottom: 40px; text-align: center; color: var(--primary-color); font-weight: bold; }
+        
+        /* カードデザイン（明るい版） */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #fff; padding: 25px; border-radius: 20px; border: 2px solid #eee; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .card:hover { border-color: var(--primary-color); transform: translateY(-5px); background: #fffdf9; }
+        .card h3 { color: var(--primary-color); margin-top: 0; display: flex; align-items: center; gap: 10px; }
 
-        /* 連絡先リスト */
-        .contact-list { list-style: none; padding: 0; font-size: 1.2rem; line-height: 2.5; text-align: center; }
-        .contact-list i { color: var(--gold); margin-right: 15px; width: 25px; }
-        .contact-list a { color: #fff; text-decoration: none; border-bottom: 1px solid var(--gold); }
+        /* 施設紹介（ソファ） */
+        #atmosphere { background: #fff9ef; padding: 40px; border-radius: 30px; text-align: center; border: 2px solid var(--accent-gold); }
 
-        footer { background: #000; padding: 30px 0; text-align: center; font-size: 0.8rem; color: #777; border-top: 1px solid #222; }
+        /* スケジュール */
+        .schedule-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+        .schedule-table tr { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-radius: 10px; }
+        .time-cell { width: 100px; font-weight: bold; color: var(--primary-color); text-align: center; border-radius: 10px 0 0 10px; padding: 15px; background: #fffdf0; }
+        .content-cell { border-radius: 0 10px 10px 0; padding: 15px 20px; }
+
+        .contact-list { list-style: none; padding: 0; font-size: 1.2rem; line-height: 2.5; }
+        .contact-list a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+
+        footer { background: #f8f8f8; padding: 30px 0; text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
+<!-- スクロールで動く犬のヒーロー -->
+<div id="flying-dog"><i class="fas fa-dog"></i></div>
+
 <header>
-    <div class="logo">HERO</div>
+    <div class="logo"><i class="fas fa-paw"></i> 就労継続支援B型 HERO作業所</div>
 </header>
 
 <section id="hero-visual">
-    <h2>自分らしく、一歩ずつ。<br>未来を創る「HERO」になろう。</h2>
-    <p>就労継続支援B型事業所 HERO</p>
+    <div class="dog-decor" style="top:10%; left:5%; transform: rotate(-20deg);"><i class="fas fa-bone"></i></div>
+    <div class="dog-decor" style="bottom:10%; right:5%; transform: rotate(20deg);"><i class="fas fa-dog"></i></div>
+    <h1>就労支援B型<br><span style="color:var(--primary-color); font-size: 4rem;">HERO作業所</span></h1>
+    <p style="font-weight: bold; color: #666; margin-top: 20px;">自分らしく輝く、あなたのための場所</p>
 </section>
 
 <div class="container">
-    <!-- 事業内容 -->
-    <section id="work">
-        <h2 class="section-title">Service & Activity</h2>
+    <section>
+        <h2 class="section-title">事業内容</h2>
         <div class="grid">
             <div class="card">
                 <h3><i class="fas fa-gem"></i> アクセサリー制作</h3>
-                <p>ブレスレットや指輪など、一つひとつ心を込めて手作りしています。モノづくりの楽しさを実感できる作業です。</p>
+                <p>指輪やブレスレットなど、キラリと光る一点物を制作しています。</p>
             </div>
             <div class="card">
-                <h3><i class="fas fa-dog"></i> ペット用品制作</h3>
-                <p>大切なペットのための服、首輪、リードを制作。実用的で可愛いアイテムを形にしていきます。</p>
+                <h3><i class="fas fa-tshirt"></i> ペット用品制作</h3>
+                <p>可愛いワンちゃんのための服やリードを楽しく作ります。</p>
             </div>
             <div class="card">
-                <h3><i class="fas fa-paint-brush"></i> アート活動</h3>
-                <p>利用者様が描いた独創的な絵を撮影し、商品として販売。あなたの個性が誰かの宝物になります。</p>
+                <h3><i class="fas fa-palette"></i> アート活動</h3>
+                <p>利用者様の描いた素敵な絵を商品化して世に送り出します。</p>
             </div>
         </div>
     </section>
 
-    <!-- 空間のこだわり -->
     <section id="atmosphere">
-        <h2 class="section-title">Atmosphere</h2>
-        <div class="relax-box">
-            <p><i class="fas fa-couch" style="font-size: 2rem; color: var(--gold);"></i></p>
-            <p><strong>リラックスできる空間作り</strong></p>
-            <p>HEROでは、ゆったりとしたソファーを配置。作業の合間に一息ついたり、落ち着いた環境で作業に取り組むことができます。あなたのペースを何よりも大切にします。</p>
-        </div>
+        <h2 class="section-title">施設紹介</h2>
+        <p><i class="fas fa-couch" style="font-size: 3rem; color: var(--accent-gold);"></i></p>
+        <p style="font-size: 1.2rem; font-weight: bold;">ふかふかソファでリラックス</p>
+        <p>「作業所＝硬い場所」ではありません。HEROはゆったりしたソファで休憩しながら、自分のペースで進められる温かい空間です。</p>
     </section>
 
-    <!-- お問い合わせ -->
+    <section>
+        <h2 class="section-title">一日の流れ</h2>
+        <table class="schedule-table">
+            <tr><td class="time-cell">10:00</td><td class="content-cell">朝礼後、作業開始（ワン！と元気にスタート）</td></tr>
+            <tr><td class="time-cell">11:00</td><td class="content-cell">10分休憩</td></tr>
+            <tr><td class="time-cell">12:00</td><td class="content-cell">お昼ごはん休憩</td></tr>
+            <tr><td class="time-cell">13:00</td><td class="content-cell">昼礼後、作業開始</td></tr>
+            <tr><td class="time-cell">13:50</td><td class="content-cell">10分休憩</td></tr>
+            <tr><td class="time-cell">15:00</td><td class="content-cell">20分休憩</td></tr>
+            <tr><td class="time-cell">16:45</td><td class="content-cell">終礼</td></tr>
+            <tr><td class="time-cell">17:00</td><td class="content-cell">終了（今日もお疲れ様でした！）</td></tr>
+        </table>
+    </section>
+
     <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <div class="card">
+        <h2 class="section-title">お問い合わせ</h2>
+        <div class="card" style="text-align: center; border: 2px solid var(--primary-color);">
             <ul class="contact-list">
-                <li><i class="fas fa-phone-alt"></i> <strong>TEL :</strong> 06-6379-5695</li>
-                <li><i class="fas fa-fax"></i> <strong>FAX :</strong> 06-6379-5696</li>
-                <li><i class="fas fa-envelope"></i> <strong>Email :</strong> <a href="mailto:HERO0333hero@outlook.com">HERO0333hero@outlook.com</a></li>
+                <li><i class="fas fa-phone-alt"></i> TEL : <strong>06-6379-5695</strong></li>
+                <li><i class="fas fa-fax"></i> FAX : 06-6379-5696</li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:HERO0333hero@outlook.com">HERO0333hero@outlook.com</a></li>
             </ul>
         </div>
     </section>
 </div>
 
 <footer>
-    <p>&copy; 2026 就労継続支援B型事業所 HERO All Rights Reserved.</p>
+    <p>&copy; 2026 就労継続支援B型 HERO作業所 All Rights Reserved.</p>
 </footer>
+
+<script>
+    // スクロールに合わせて犬が跳ねるアクション
+    window.addEventListener('scroll', function() {
+        const dog = document.getElementById('flying-dog');
+        const scrollPos = window.scrollY;
+        // スクロール量に合わせて少し回転したり上下に動かしたりする
+        const move = Math.sin(scrollPos * 0.05) * 20;
+        dog.style.transform = `translateY(${move}px) rotate(${move}deg)`;
+    });
+</script>
 
 </body>
 </html>
