@@ -54,13 +54,12 @@
         .time-cell { background: var(--primary-color); color: #fff; padding: 15px; border-radius: 15px 0 0 15px; font-weight: bold; width: 110px; text-align: center; }
         .content-cell { background: #fff; padding: 15px 25px; border-radius: 0 15px 15px 0; border: 1px solid #eee; font-weight: bold; }
 
-        /* マップ */
         #access { margin-top: 60px; text-align: center; }
         .map-container { position: relative; width: 100%; max-width: 800px; margin: 20px auto; border-radius: 30px; overflow: hidden; border: 8px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
         .map-marker-arrow { position: absolute; top: 35%; left: 50%; transform: translate(-50%, -100%); z-index: 2; color: #ff4757; font-size: 3.5rem; animation: bounce 1.5s infinite; pointer-events: none; }
         @keyframes bounce { 0%, 100% { transform: translate(-50%, -100%); } 50% { transform: translate(-50%, -120%); } }
 
-        /* お問い合わせ＆ショップ統合エリア */
+        /* 地図の下：お問い合わせ＆ショップボタン統合エリア */
         .contact-shop-card { 
             background: #fff; padding: 40px; border-radius: 40px; 
             border: 3px solid var(--primary-color); position: relative;
@@ -84,12 +83,15 @@
 </head>
 <body>
 
-<!-- ヒーロー犬 -->
 <div id="dog1" class="hero-dog dog-orange"><i class="fas fa-dog"></i></div>
 <div id="dog2" class="hero-dog dog-red"><i class="fas fa-dog"></i></div>
 <div id="dog3" class="hero-dog dog-blue"><i class="fas fa-dog"></i></div>
 <div id="dog4" class="hero-dog dog-green"><i class="fas fa-dog"></i></div>
 <div id="dog5" class="hero-dog dog-pink"><i class="fas fa-dog"></i></div>
+
+<div class="grass-spot" style="top: 15%; left: 3%;"><i class="fas fa-leaf"></i></div>
+<div class="grass-spot" style="top: 40%; right: 4%;"><i class="fas fa-seedling"></i></div>
+<div class="grass-spot" style="bottom: 20%; left: 5%;"><i class="fas fa-leaf"></i></div>
 
 <header>
     <div class="area-tag">大阪市中央区</div><br>
@@ -99,7 +101,7 @@
 <section id="hero-visual">
     <span class="top-sub">中央区の就労支援B型作業所</span>
     <span class="hero-name">HERO作業所</span>
-    <p style="font-weight: bold; color: #888;">自分らしく輝く、あなたのための場所</p>
+    <p style="font-weight: bold; color: #888; margin-top: 15px;">自分らしく輝く、あなたのための場所</p>
 </section>
 
 <div class="container">
@@ -113,7 +115,7 @@
         </div>
     </section>
 
-    <!-- 写真ギャラリー -->
+    <!-- 作業所の風景 -->
     <section class="reveal" style="margin-top: 60px;">
         <h2 class="section-title">作業所の風景</h2>
         <div class="photo-grid">
@@ -139,12 +141,17 @@
         <p>ゆったり座れる大きなソファで、自分のペースを大切にできる環境です。</p>
     </section>
 
-    <!-- 一日の流れ -->
+    <!-- 一日の流れ (これが復活しました！) -->
     <section class="reveal" style="margin-top: 60px;">
         <h2 class="section-title">一日の流れ</h2>
         <table class="schedule-table">
             <tr><td class="time-cell">10:00</td><td class="content-cell">朝礼後、作業開始</td></tr>
+            <tr><td class="time-cell">11:00</td><td class="content-cell">10分休憩</td></tr>
             <tr><td class="time-cell">12:00</td><td class="content-cell">お昼休憩</td></tr>
+            <tr><td class="time-cell">13:00</td><td class="content-cell">昼礼後、作業開始</td></tr>
+            <tr><td class="time-cell">13:50</td><td class="content-cell">10分休憩</td></tr>
+            <tr><td class="time-cell">15:00</td><td class="content-cell">20分休憩</td></tr>
+            <tr><td class="time-cell">16:45</td><td class="content-cell">終礼</td></tr>
             <tr><td class="time-cell">17:00</td><td class="content-cell">終了</td></tr>
         </table>
     </section>
@@ -157,11 +164,11 @@
         </div>
         <div class="map-container">
             <div class="map-marker-arrow"><i class="fas fa-caret-down"></i></div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.957643501728!2d135.51139417627448!3d34.68102378438139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e73ca0979435%3A0xc345719f96b79c3f!2z44CSNTQwLTAwMjgg5aSn6Ziq5bqc5aSn6Ziq5biC5Lit5aSu5Yy65bi456OQ55S677yS5LiB55uu77yR4oiS77yR77yTIOOCouODieODkOODs+OCueODkOODqyAyRg!5e0!3m2!1sja!2sjp!4v1715055000000!5m2!1sja!2sjp" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.957643501728!2d135.51139417627448!3d34.68102378438139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e73ca0979435%3A0xc345719f96b79c3f!2z44CSNTQwLTAwMjgg5aSn6Ziq5bqc5aSn6Ziq5biC5Lit5aSu5Yy65bi456OQ55S677yS5LiB55uu77yR4oiS77yR77yTIOOCouODieODkOODs+OCueODkOODqyAyRg!5e0!3m2!1sja!2sjp!4v1715055000000!5m2!1sja!2sjp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
-    <!-- 地図の下：お問い合わせ＆ショップボタン -->
+    <!-- お問い合わせ＆ショップボタン -->
     <section class="reveal" style="margin-top: 40px;">
         <h2 class="section-title">お問い合わせ</h2>
         <div class="contact-shop-card">
